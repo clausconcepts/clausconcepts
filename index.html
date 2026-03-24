@@ -285,8 +285,8 @@
     .hero-waves {
       position: absolute;
       bottom: 0;
-      left: 0;
-      width: 100%;
+      left: -5%;
+      width: 110%;
       height: 120px;
       overflow: hidden;
     }
@@ -294,16 +294,18 @@
     .hero-waves svg {
       position: absolute;
       bottom: 0;
-      width: 200%;
-      min-width: 1400px;
+      left: 0;
+      width: 300%;
+      min-width: 2400px;
+      height: 100%;
     }
 
-    .hero-wave-1 { animation: waveSlide 8s linear infinite; opacity: 0.15; }
-    .hero-wave-2 { animation: waveSlide 12s linear infinite reverse; opacity: 0.08; bottom: -10px; }
+    .hero-wave-1 { animation: waveSlide 10s linear infinite; opacity: 0.18; }
+    .hero-wave-2 { animation: waveSlide 14s linear infinite reverse; opacity: 0.1; bottom: -5px; }
 
     @keyframes waveSlide {
       0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
+      100% { transform: translateX(-33.33%); }
     }
 
     .hero-content {
@@ -768,9 +770,9 @@
 
     .stats-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 2rem;
-      max-width: 1000px;
+      max-width: 500px;
       margin: 0 auto;
       position: relative;
       z-index: 1;
@@ -798,6 +800,211 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
       margin-top: 0.25rem;
+    }
+
+    /* ═══════════════════════════════════════════
+       BARE LAND CONDO SECTION
+    ═══════════════════════════════════════════ */
+    #condo {
+      padding: var(--section-pad) var(--side-pad);
+      background: var(--white);
+    }
+
+    .condo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem, 6vw, 6rem);
+      align-items: center;
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+
+    .condo-benefits {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+
+    .condo-benefit {
+      padding: 1.25rem;
+      border-radius: 14px;
+      background: var(--cloud);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .condo-benefit:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(15, 43, 60, 0.08);
+    }
+
+    .condo-benefit h4 {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--deep);
+      margin-bottom: 0.35rem;
+    }
+
+    .condo-benefit p {
+      font-size: 0.82rem;
+      line-height: 1.6;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    .condo-visual {
+      padding: 3rem;
+      border-radius: 24px;
+      background: linear-gradient(160deg, var(--cloud) 0%, rgba(43,184,196,0.08) 100%);
+      text-align: center;
+    }
+
+    .condo-visual-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, var(--teal), var(--green));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+    }
+
+    .condo-visual h3 {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--deep);
+      margin-bottom: 0.5rem;
+    }
+
+    .condo-visual p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+
+    /* ═══════════════════════════════════════════
+       LOCATION / PROXIMITY SECTION
+    ═══════════════════════════════════════════ */
+    #location {
+      padding: var(--section-pad) var(--side-pad);
+      background: var(--sand);
+    }
+
+    .location-header {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 3.5rem;
+    }
+
+    .location-header .accent-line { margin: 0 auto 2rem; }
+
+    .location-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+      max-width: 1140px;
+      margin: 0 auto 3rem;
+    }
+
+    .location-card {
+      border-radius: 20px;
+      overflow: hidden;
+      background: white;
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s;
+    }
+
+    .location-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(15, 43, 60, 0.1);
+    }
+
+    .location-card-img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 0.5rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .location-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .lc-1 { background: linear-gradient(160deg, #15405e, #2bb8c4); }
+    .lc-2 { background: linear-gradient(160deg, #1b6a9c, #3d9b6a); }
+    .lc-3 { background: linear-gradient(160deg, #2bb8c4, #15405e); }
+    .lc-4 { background: linear-gradient(160deg, #3d9b6a, #1b6a9c); }
+
+    .location-card-body {
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .location-card-time {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--ocean), var(--teal));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.2;
+    }
+
+    .location-card-unit {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .location-card-dest {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--deep);
+      margin-top: 0.5rem;
+    }
+
+    .location-body {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    .location-body p {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    @media (max-width: 900px) {
+      .condo-grid { grid-template-columns: 1fr; }
+      .condo-visual { order: -1; }
+      .location-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 640px) {
+      .condo-benefits { grid-template-columns: 1fr; }
+      .location-grid { grid-template-columns: 1fr; max-width: 320px; }
     }
 
     /* ═══════════════════════════════════════════
@@ -1023,14 +1230,15 @@
   <!-- ═══ NAV ═══ -->
   <nav id="mainNav">
     <a href="#hero" class="nav-logo">
-      <img src="logos/Icon_trans.png" alt="Claus Concepts" />
+      <img src="Logos/Icon_trans.png" alt="Claus Concepts" />
       <span class="nav-wordmark">CLAUSCONCEPTS</span>
     </a>
     <ul class="nav-links">
       <li><a href="#intro">The Vision</a></li>
       <li><a href="#features">Features</a></li>
       <li><a href="#gallery">Gallery</a></li>
-      <li><a href="#developer">Developer</a></li>
+      <li><a href="#condo">Ownership</a></li>
+      <li><a href="#location">Location</a></li>
       <li><a href="#contact" class="nav-cta-link">Get In Touch</a></li>
     </ul>
     <button class="nav-toggle" aria-label="Toggle navigation">
@@ -1064,11 +1272,11 @@
     </div>
 
     <div class="hero-waves">
-      <svg class="hero-wave-1" viewBox="0 0 2880 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,40 C480,80 960,0 1440,40 C1920,80 2400,0 2880,40 L2880,80 L0,80 Z" fill="var(--cloud)"/>
+      <svg class="hero-wave-1" viewBox="0 0 4320 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,40 C360,75 720,5 1080,40 C1440,75 1800,5 2160,40 C2520,75 2880,5 3240,40 C3600,75 3960,5 4320,40 L4320,80 L0,80 Z" fill="var(--cloud)"/>
       </svg>
-      <svg class="hero-wave-2" viewBox="0 0 2880 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,50 C360,20 720,70 1080,40 C1440,10 1800,60 2160,30 C2520,0 2700,50 2880,30 L2880,80 L0,80 Z" fill="var(--cloud)"/>
+      <svg class="hero-wave-2" viewBox="0 0 4320 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,30 C270,60 540,10 810,35 C1080,60 1350,10 1620,35 C1890,60 2160,10 2430,35 C2700,60 2970,10 3240,35 C3510,60 3780,10 4050,35 L4320,30 L4320,80 L0,80 Z" fill="var(--cloud)"/>
       </svg>
     </div>
   </section>
@@ -1203,17 +1411,123 @@
         <div class="stat-label">Homes Planned</div>
       </div>
       <div class="stat reveal reveal-delay-1">
-        <div class="stat-number" data-target="2026">0</div>
-        <div class="stat-label">Completion Year</div>
-      </div>
-      <div class="stat reveal reveal-delay-2">
-        <div class="stat-number" data-target="100">0%</div>
-        <div class="stat-label">Custom Finishes</div>
-      </div>
-      <div class="stat reveal reveal-delay-3">
         <div class="stat-number" data-target="1">0</div>
         <div class="stat-label">Development</div>
       </div>
+    </div>
+  </section>
+
+  <!-- ═══ BARE LAND CONDO ═══ -->
+  <section id="condo">
+    <div class="condo-grid">
+      <div class="reveal">
+        <p class="eyebrow">Ownership Structure</p>
+        <div class="accent-line"></div>
+        <h2 class="section-title">A bare land condominium — the best of both worlds</h2>
+        <div class="section-body">
+          <p>
+            Coastal Breeze Way is structured as a bare land condominium under Nova Scotia's
+            Condominium Act. That means you own your lot and your home outright, just like
+            a traditional property — while sharing the cost of common infrastructure like
+            roads, landscaping, and shared green spaces with your neighbours.
+          </p>
+          <p>
+            It's the independence of owning your own home with the convenience of a
+            well-maintained community — and none of the complexity of a traditional condo.
+          </p>
+        </div>
+
+        <div class="condo-benefits">
+          <div class="condo-benefit">
+            <h4>You Own Your Land</h4>
+            <p>Your lot is yours, defined by survey — build, landscape, and live as you choose.</p>
+          </div>
+          <div class="condo-benefit">
+            <h4>Lower Fees</h4>
+            <p>Condo fees cover shared infrastructure only — roads, green space, and common areas — keeping costs low.</p>
+          </div>
+          <div class="condo-benefit">
+            <h4>Shared Maintenance</h4>
+            <p>Snow clearing, road upkeep, and communal landscaping are handled collectively — less for you to worry about.</p>
+          </div>
+          <div class="condo-benefit">
+            <h4>Community Standards</h4>
+            <p>A well-managed association ensures the neighbourhood stays beautiful and property values are protected.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="condo-visual reveal reveal-delay-2">
+        <div class="condo-visual-icon">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+            <line x1="1" y1="22" x2="23" y2="22" stroke-dasharray="3 2" opacity="0.5"/>
+          </svg>
+        </div>
+        <h3>Your Home, Your Land</h3>
+        <p>
+          All the pride of individual homeownership with the ease of shared community upkeep —
+          a modern approach to residential living in Nova Scotia.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ LOCATION ═══ -->
+  <section id="location">
+    <div class="location-header reveal">
+      <p class="eyebrow">The Location</p>
+      <div class="accent-line"></div>
+      <h2 class="section-title">Connected to everything, tucked away from it all</h2>
+    </div>
+
+    <div class="location-grid">
+      <div class="location-card reveal reveal-delay-1">
+        <div class="location-card-img lc-1">Add photo</div>
+        <div class="location-card-body">
+          <div class="location-card-time">40</div>
+          <div class="location-card-unit">minutes</div>
+          <div class="location-card-dest">Halifax</div>
+        </div>
+      </div>
+
+      <div class="location-card reveal reveal-delay-2">
+        <div class="location-card-img lc-2">Add photo</div>
+        <div class="location-card-body">
+          <div class="location-card-time">10</div>
+          <div class="location-card-unit">minutes</div>
+          <div class="location-card-dest">Chester</div>
+        </div>
+      </div>
+
+      <div class="location-card reveal reveal-delay-3">
+        <div class="location-card-img lc-3">Add photo</div>
+        <div class="location-card-body">
+          <div class="location-card-time">5</div>
+          <div class="location-card-unit">minutes</div>
+          <div class="location-card-dest">Marina</div>
+        </div>
+      </div>
+
+      <div class="location-card reveal reveal-delay-4">
+        <div class="location-card-img lc-4">Add photo</div>
+        <div class="location-card-body">
+          <div class="location-card-time">1</div>
+          <div class="location-card-unit">minute</div>
+          <div class="location-card-dest">Beach</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="location-body reveal">
+      <p>
+        Whether you're retiring to the coast or commuting into the city,
+        East River puts you in the perfect spot. Halifax is an easy 40-minute
+        drive down the highway, while the village of Chester, the local marina,
+        and the beach are right at your doorstep. It's the kind of location where
+        your daily life feels like a getaway.
+      </p>
     </div>
   </section>
 
@@ -1238,7 +1552,7 @@
       </div>
 
       <div class="dev-logo-block reveal reveal-delay-2">
-        <img src="logos/Icon_trans.png" alt="Claus Concepts Logo" />
+        <img src="Logos/Icon_trans.png" alt="Claus Concepts Logo" />
         <div class="dev-logo-text">CLAUSCONCEPTS</div>
         <div class="dev-logo-sub">Custom Home Development</div>
       </div>
@@ -1271,13 +1585,15 @@
   <!-- ═══ FOOTER ═══ -->
   <footer>
     <div class="footer-brand">
-      <img src="logos/Icon_trans.png" alt="Claus Concepts" />
+      <img src="Logos/Icon_trans.png" alt="Claus Concepts" />
       <span class="footer-brand-text">CLAUSCONCEPTS</span>
     </div>
     <span class="footer-copy">&copy; 2026 Claus Concepts. All rights reserved.</span>
     <div class="footer-links">
       <a href="#intro">The Vision</a>
       <a href="#gallery">Gallery</a>
+      <a href="#condo">Ownership</a>
+      <a href="#location">Location</a>
       <a href="#contact">Contact</a>
     </div>
   </footer>
