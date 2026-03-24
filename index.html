@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Claus Concepts — Custom Home Development</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --deep:    #0d2b40;
+      --mid:     #1a5276;
+      --ocean:   #2e86ab;
+      --sky:     #a8d8ea;
+      --teal:    #2d8a6e;
+      --green:   #7ab89a;
+      --brown:   #7a5c3a;
+      --sand:    #f2ece3;
+      --white:   #ffffff;
+      --text:    #1a2a35;
+      --muted:   #5a7383;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 5vw;
+      background: rgba(13, 43, 64, 0.92);
+      backdrop-filter: blur(8px);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+    }
+
+    .logo-placeholder {
+      width: 40px;
+      height: 40px;
+      border-radius: 6px;
+      background: linear-gradient(135deg, var(--ocean), var(--teal));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: white;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-wordmark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--white);
+      letter-spacing: 0.08em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--sky); }
+
+    .nav-cta {
+      background: var(--teal);
+      color: white !important;
+      padding: 0.55rem 1.2rem;
+      border-radius: 4px;
+      transition: background 0.2s !important;
+    }
+
+    .nav-cta:hover { background: var(--ocean) !important; color: white !important; }
+
+    /* ── HERO ── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--deep);
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(160deg, rgba(13,43,64,0.85) 40%, rgba(45,138,110,0.35) 100%),
+        url('images/hero.jpg') center/cover no-repeat;
+    }
+
+    .hero-bg-placeholder {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, #0d2b40 0%, #1a5276 45%, #2d8a6e 100%);
+    }
+
+    /* Decorative wave */
+    .hero-wave {
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+    }
+
+    .hero-wave svg { display: block; width: 100%; }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 0 5vw;
+      max-width: 780px;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--sky);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--sky);
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      font-weight: 300;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.75);
+      max-width: 520px;
+      margin-bottom: 2.5rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.9rem 2rem;
+      border-radius: 4px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.25s;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--teal);
+      color: white;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background: #238a5e;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(45,138,110,0.35);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: white;
+      border: 1.5px solid rgba(255,255,255,0.5);
+      margin-left: 1rem;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--sky);
+      color: var(--sky);
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      padding: 7rem 5vw;
+      background: var(--sand);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--deep);
+      margin-bottom: 1.5rem;
+    }
+
+    .section-body {
+      font-size: 0.98rem;
+      font-weight: 300;
+      line-height: 1.85;
+      color: var(--muted);
+    }
+
+    .section-body p + p { margin-top: 1rem; }
+
+    .about-accent {
+      width: 48px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--ocean), var(--teal));
+      border-radius: 2px;
+      margin-bottom: 1.75rem;
+    }
+
+    .about-image {
+      position: relative;
+    }
+
+    .about-img-main {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      border-radius: 8px;
+      display: block;
+    }
+
+    .about-img-placeholder {
+      width: 100%;
+      aspect-ratio: 4/5;
+      background: linear-gradient(160deg, var(--mid) 0%, var(--teal) 100%);
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      gap: 0.5rem;
+    }
+
+    .about-img-placeholder svg { opacity: 0.4; }
+
+    .about-stat-badge {
+      position: absolute;
+      bottom: -1.5rem;
+      left: -1.5rem;
+      background: var(--deep);
+      color: white;
+      padding: 1.25rem 1.75rem;
+      border-radius: 8px;
+      box-shadow: 0 8px 30px rgba(13,43,64,0.25);
+    }
+
+    .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 500;
+      color: var(--sky);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.6);
+      margin-top: 0.25rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── WHAT WE DO ── */
+    #what {
+      padding: 7rem 5vw;
+      background: var(--white);
+    }
+
+    .what-header {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 4rem;
+    }
+
+    .what-header .about-accent { margin: 0 auto 1.75rem; }
+
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .pillar {
+      padding: 2.5rem;
+      border-radius: 8px;
+      border: 1px solid rgba(46,134,171,0.12);
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+
+    .pillar:hover {
+      box-shadow: 0 12px 40px rgba(13,43,64,0.1);
+      transform: translateY(-4px);
+    }
+
+    .pillar-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pillar-icon-1 { background: rgba(46,134,171,0.12); }
+    .pillar-icon-2 { background: rgba(45,138,110,0.12); }
+    .pillar-icon-3 { background: rgba(122,92,58,0.1); }
+
+    .pillar h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--deep);
+      margin-bottom: 0.75rem;
+    }
+
+    .pillar p {
+      font-size: 0.92rem;
+      line-height: 1.75;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    /* ── GALLERY ── */
+    #gallery {
+      padding: 7rem 5vw;
+      background: var(--deep);
+    }
+
+    #gallery .section-title { color: white; }
+    #gallery .section-eyebrow { color: var(--sky); }
+    #gallery .about-accent { background: linear-gradient(90deg, var(--sky), var(--green)); }
+
+    .gallery-header {
+      max-width: 1100px;
+      margin: 0 auto 3rem;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: 280px 280px;
+      gap: 1rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .gal-item {
+      border-radius: 6px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .gal-item:nth-child(1) { grid-column: span 7; grid-row: span 1; }
+    .gal-item:nth-child(2) { grid-column: span 5; grid-row: span 1; }
+    .gal-item:nth-child(3) { grid-column: span 4; grid-row: span 1; }
+    .gal-item:nth-child(4) { grid-column: span 4; grid-row: span 1; }
+    .gal-item:nth-child(5) { grid-column: span 4; grid-row: span 1; }
+
+    .gal-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s;
+    }
+
+    .gal-item:hover .gal-img { transform: scale(1.04); }
+
+    .gal-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.3);
+      text-transform: uppercase;
+    }
+
+    .gal-p1 { background: linear-gradient(135deg, #1a5276, #2d8a6e); }
+    .gal-p2 { background: linear-gradient(135deg, #2d8a6e, #1a5276); }
+    .gal-p3 { background: linear-gradient(135deg, #0d2b40, #2e86ab); }
+    .gal-p4 { background: linear-gradient(135deg, #2e86ab, #2d8a6e); }
+    .gal-p5 { background: linear-gradient(135deg, #7a5c3a, #1a5276); }
+
+    /* ── CTA ── */
+    #contact {
+      padding: 8rem 5vw;
+      background: var(--sand);
+      text-align: center;
+    }
+
+    #contact .about-accent { margin: 0 auto 1.75rem; }
+    #contact .section-title { margin-bottom: 1.25rem; }
+
+    .cta-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      font-weight: 300;
+      line-height: 1.7;
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .cta-email-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--deep);
+      color: white;
+      padding: 1rem 2.25rem;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      transition: all 0.25s;
+    }
+
+    .cta-email-btn:hover {
+      background: var(--mid);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(13,43,64,0.2);
+    }
+
+    .cta-note {
+      margin-top: 1.25rem;
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--deep);
+      color: rgba(255,255,255,0.5);
+      padding: 2.5rem 5vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.82rem;
+    }
+
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.8);
+      letter-spacing: 0.08em;
+    }
+
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--sky); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .about-stat-badge { left: 1rem; }
+      .pillars { grid-template-columns: 1fr; }
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+      }
+      .gal-item { grid-column: span 1 !important; grid-row: span 1 !important; height: 200px; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#hero" class="nav-logo">
+      <div class="logo-placeholder">CC</div>
+      <span class="nav-wordmark">Claus Concepts</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#what">Our Work</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contact" class="nav-cta">Get In Touch</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg-placeholder"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Claus Concepts — Custom Home Development</p>
+      <h1 class="hero-title">
+        Homes built with<br /><em>intention</em> and care
+      </h1>
+      <p class="hero-sub">
+        We design and build homes that reflect the lives lived in them —
+        crafted with precision, grounded in the landscape, and built to last generations.
+      </p>
+      <a href="#contact" class="btn btn-primary">Start a Conversation</a>
+      <a href="#gallery" class="btn btn-outline">See Our Work</a>
+    </div>
+    <div class="hero-wave">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#f2ece3"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-grid">
+      <div class="about-image">
+        <div class="about-img-placeholder">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1">
+            <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/>
+            <polyline points="21 15 16 10 5 21"/>
+          </svg>
+          <span>Your photo here</span>
+        </div>
+        <div class="about-stat-badge">
+          <div class="stat-number">15+</div>
+          <div class="stat-label">Homes Completed</div>
+        </div>
+      </div>
+      <div class="about-text">
+        <p class="section-eyebrow">Who We Are</p>
+        <div class="about-accent"></div>
+        <h2 class="section-title">A development firm rooted in quality</h2>
+        <div class="section-body">
+          <p>
+            Claus Concepts was founded on a simple belief: a home should feel like it belongs — to its owners, to its neighbourhood, and to the land it sits on. We bring that principle to every build.
+          </p>
+          <p>
+            From initial design conversations to the day you step through the front door, we stay involved, stay accountable, and stay committed to getting every detail right.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT WE DO -->
+  <section id="what">
+    <div class="what-header">
+      <p class="section-eyebrow">What We Offer</p>
+      <div class="about-accent"></div>
+      <h2 class="section-title">Built differently, from the ground up</h2>
+    </div>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-icon pillar-icon-1">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2e86ab" stroke-width="1.5">
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+        </div>
+        <h3>Custom Builds</h3>
+        <p>Every home we build is designed around the people who will live there. No templates, no shortcuts — just thoughtful construction tailored to your vision.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon pillar-icon-2">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2d8a6e" stroke-width="1.5">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+        </div>
+        <h3>Quality Craftsmanship</h3>
+        <p>We work with trusted tradespeople who share our standards. Every finish, fixture, and frame is chosen and installed with longevity in mind.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon pillar-icon-3">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#7a5c3a" stroke-width="1.5">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <h3>Transparent Process</h3>
+        <p>Building a home shouldn't feel like a black box. We keep you informed at every stage so you always know where your project stands.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery">
+    <div class="gallery-header">
+      <p class="section-eyebrow">Our Work</p>
+      <div class="about-accent"></div>
+      <h2 class="section-title">Homes we're proud of</h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="gal-item">
+        <div class="gal-placeholder gal-p1">Photo coming soon</div>
+      </div>
+      <div class="gal-item">
+        <div class="gal-placeholder gal-p2">Photo coming soon</div>
+      </div>
+      <div class="gal-item">
+        <div class="gal-placeholder gal-p3">Photo coming soon</div>
+      </div>
+      <div class="gal-item">
+        <div class="gal-placeholder gal-p4">Photo coming soon</div>
+      </div>
+      <div class="gal-item">
+        <div class="gal-placeholder gal-p5">Photo coming soon</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA / CONTACT -->
+  <section id="contact">
+    <p class="section-eyebrow">Let's Talk</p>
+    <div class="about-accent"></div>
+    <h2 class="section-title">Ready to build something<br />you'll love?</h2>
+    <p class="cta-sub">
+      Whether you have a clear vision or just a feeling — we'd love to hear about it.
+      Reach out and let's start a conversation.
+    </p>
+    <a href="mailto:me@kevinclaus.ca" class="cta-email-btn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+        <polyline points="22,6 12,13 2,6"/>
+      </svg>
+      me@kevinclaus.ca
+    </a>
+    <p class="cta-note">We typically respond within one business day.</p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-brand">Claus Concepts</span>
+    <span>© 2026 Claus Concepts. All rights reserved.</span>
+    <div class="footer-links">
+      <a href="#about">About</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </footer>
+
+</body>
+</html>
