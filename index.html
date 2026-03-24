@@ -82,7 +82,7 @@
     .nav-cta-link {
       background: rgba(255,255,255,0.15) !important; backdrop-filter: blur(8px);
       padding: 0.5rem 1.25rem; border-radius: 100px; border: 1px solid rgba(255,255,255,0.25);
-      transition: all 0.3s !important;
+      transition: all 0.3s !important; white-space: nowrap;
     }
     .nav-cta-link:hover { background: var(--teal) !important; border-color: var(--teal) !important; color: white !important; }
     nav.scrolled .nav-cta-link { background: var(--teal) !important; border-color: var(--teal) !important; color: white !important; }
@@ -156,6 +156,7 @@
       font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
       text-decoration: none; cursor: pointer; border: none;
       transition: all 0.35s cubic-bezier(0.22,1,0.36,1);
+      white-space: nowrap;
     }
     .btn-primary {
       background: linear-gradient(135deg, var(--teal), var(--green)); color: white;
@@ -207,12 +208,12 @@
     .float-card-text small { font-size: 0.78rem; color: var(--muted); font-weight: 500; }
 
     /* ════════════ FEATURES ════════════ */
-    #features { padding: var(--section-pad) var(--side-pad); background: var(--white); }
+    #features { padding: var(--section-pad) var(--side-pad) 3rem; background: var(--cloud); }
     .features-header { text-align: center; max-width: 600px; margin: 0 auto 4rem; }
     .features-header .accent-line { margin: 0 auto 2rem; }
     .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 1140px; margin: 0 auto; }
     .feature-card {
-      position: relative; padding: 2.5rem; border-radius: 20px; background: var(--cloud);
+      position: relative; padding: 2.5rem; border-radius: 20px; background: var(--white);
       border: 1px solid transparent; transition: all 0.4s cubic-bezier(0.22,1,0.36,1); overflow: hidden;
     }
     .feature-card::before {
@@ -420,6 +421,8 @@
 
     /* ════════════ RESPONSIVE ════════════ */
     @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
       .intro-grid, .dev-grid, .condo-grid { grid-template-columns: 1fr; gap: 3rem; }
       .features-grid { grid-template-columns: 1fr; max-width: 480px; }
       .proximity-grid { grid-template-columns: 1fr 1fr; }
@@ -428,8 +431,6 @@
       .dev-logo-block { order: -1; }
     }
     @media (max-width: 640px) {
-      .nav-links { display: none; }
-      .nav-toggle { display: flex; }
       .hero-title { font-size: clamp(2.2rem,10vw,3.5rem); }
       .hero-actions { flex-direction: column; }
       .hero-actions .btn { width: 100%; justify-content: center; }
@@ -449,7 +450,7 @@
     </a>
     <ul class="nav-links">
       <li><a href="#intro">The Vision</a></li>
-      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#features">The Homes</a></li>
       <li><a href="#sitemap">Site Plan</a></li>
       <li><a href="#condo">Ownership</a></li>
       <li><a href="#location">Location</a></li>
@@ -521,10 +522,10 @@
     </div>
   </section>
 
-  <!-- FEATURES -->
+  <!-- THE HOMES — Features + Gallery combined -->
   <section id="features">
     <div class="features-header reveal">
-      <p class="eyebrow">What Sets Us Apart</p>
+      <p class="eyebrow">The Homes</p>
       <div class="accent-line"></div>
       <h2 class="section-title">Built differently, from the ground up</h2>
     </div>
@@ -553,13 +554,7 @@
     </div>
   </section>
 
-  <!-- GALLERY -->
-  <section id="gallery">
-    <div class="gallery-header reveal">
-      <p class="eyebrow">The Homes</p>
-      <div class="accent-line"></div>
-      <h2 class="section-title">A preview of what's to come</h2>
-    </div>
+  <section id="gallery" style="padding-top: 0; margin-top: -2rem;">
     <div class="gallery-scroll" id="galleryScroll">
       <div class="gallery-item"><img src="CBW/Summer.png" alt="Coastal Breeze Way — Summer View" /></div>
       <div class="gallery-item"><img src="CBW/Winter.png" alt="Coastal Breeze Way — Winter View" /></div>
@@ -604,25 +599,25 @@
       </p>
       <div class="proximity-grid">
         <div class="prox-card reveal reveal-delay-1">
-          <div class="prox-card-img"><div class="prox-img-placeholder">Add photo</div></div>
+          <div class="prox-card-img"><img src="CBW/locations/halifax.jpg" alt="Halifax, Nova Scotia" /></div>
           <div class="prox-time">40</div>
           <div class="prox-unit">minutes</div>
           <div class="prox-dest">Halifax</div>
         </div>
         <div class="prox-card reveal reveal-delay-2">
-          <div class="prox-card-img"><div class="prox-img-placeholder">Add photo</div></div>
+          <div class="prox-card-img"><img src="CBW/locations/chester.jpg" alt="Chester, Nova Scotia" /></div>
           <div class="prox-time">10</div>
           <div class="prox-unit">minutes</div>
           <div class="prox-dest">Chester</div>
         </div>
         <div class="prox-card reveal reveal-delay-3">
-          <div class="prox-card-img"><div class="prox-img-placeholder">Add photo</div></div>
+          <div class="prox-card-img"><img src="CBW/locations/marina.jpg" alt="East River Marina" /></div>
           <div class="prox-time">5</div>
           <div class="prox-unit">minutes</div>
           <div class="prox-dest">Marina</div>
         </div>
         <div class="prox-card reveal reveal-delay-4">
-          <div class="prox-card-img"><div class="prox-img-placeholder">Add photo</div></div>
+          <div class="prox-card-img"><img src="CBW/locations/beach.jpg" alt="Meisner's Beach" /></div>
           <div class="prox-time">1</div>
           <div class="prox-unit">minute</div>
           <div class="prox-dest">Beach</div>
@@ -664,7 +659,7 @@
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
             </div>
             <h4>Shared Infrastructure</h4>
-            <p>Roads, common areas, and shared systems are collectively maintained — no surprises, no solo burden.</p>
+            <p>Roads and common green spaces are collectively maintained by the condo corporation — no surprises, no solo burden.</p>
           </div>
           <div class="condo-benefit">
             <div class="condo-icon">
@@ -737,7 +732,7 @@
     <span class="footer-copy">&copy; 2026 Claus Concepts. All rights reserved.</span>
     <div class="footer-links">
       <a href="#intro">The Vision</a>
-      <a href="#gallery">Gallery</a>
+      <a href="#features">The Homes</a>
       <a href="#contact">Contact</a>
     </div>
   </footer>
