@@ -62,14 +62,14 @@
     .nav-logo img { height: 36px; width: auto; transition: height 0.4s; }
     nav.scrolled .nav-logo img { height: 30px; }
     .nav-wordmark {
-      font-family: 'Quicksand', sans-serif; font-size: 1.05rem; font-weight: 600;
-      letter-spacing: 0.18em; text-transform: uppercase; color: var(--white); transition: color 0.4s;
+      font-family: 'Quicksand', sans-serif; font-size: 0.82rem; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--white); transition: color 0.4s;
     }
     nav.scrolled .nav-wordmark { color: var(--navy); }
-    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+    .nav-links { display: flex; align-items: center; gap: 1.4rem; list-style: none; }
     .nav-links a {
       font-family: 'Quicksand', sans-serif; color: rgba(255,255,255,0.8); text-decoration: none;
-      font-size: 0.82rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+      font-size: 0.7rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
       transition: color 0.3s; position: relative;
     }
     .nav-links a::after {
@@ -81,8 +81,8 @@
     nav.scrolled .nav-links a:hover { color: var(--ocean); }
     .nav-cta-link {
       background: rgba(255,255,255,0.15) !important; backdrop-filter: blur(8px);
-      padding: 0.5rem 1.25rem; border-radius: 100px; border: 1px solid rgba(255,255,255,0.25);
-      transition: all 0.3s !important; white-space: nowrap;
+      padding: 0.4rem 1rem; border-radius: 100px; border: 1px solid rgba(255,255,255,0.25);
+      transition: all 0.3s !important; white-space: nowrap; font-size: 0.7rem !important;
     }
     .nav-cta-link:hover { background: var(--teal) !important; border-color: var(--teal) !important; color: white !important; }
     nav.scrolled .nav-cta-link { background: var(--teal) !important; border-color: var(--teal) !important; color: white !important; }
@@ -207,60 +207,71 @@
     .float-card-text span { display: block; font-size: 1.5rem; font-weight: 700; color: var(--deep); line-height: 1.2; }
     .float-card-text small { font-size: 0.78rem; color: var(--muted); font-weight: 500; }
 
-    /* ════════════ FEATURES ════════════ */
-    #features { padding: var(--section-pad) var(--side-pad) 3rem; background: var(--cloud); }
-    .features-header { text-align: center; max-width: 600px; margin: 0 auto 4rem; }
-    .features-header .accent-line { margin: 0 auto 2rem; }
-    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 1140px; margin: 0 auto; }
-    .feature-card {
-      position: relative; padding: 2.5rem; border-radius: 20px; background: var(--white);
-      border: 1px solid transparent; transition: all 0.4s cubic-bezier(0.22,1,0.36,1); overflow: hidden;
-    }
-    .feature-card::before {
-      content: ''; position: absolute; inset: 0; border-radius: 20px; padding: 1px;
-      background: linear-gradient(135deg, transparent 0%, rgba(43,184,196,0.2) 50%, transparent 100%);
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor; mask-composite: exclude; opacity: 0; transition: opacity 0.4s;
-    }
-    .feature-card:hover::before { opacity: 1; }
-    .feature-card:hover { background: white; transform: translateY(-6px); box-shadow: 0 20px 60px rgba(15,43,60,0.08); }
-    .feature-icon { width: 56px; height: 56px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; }
-    .fi-1 { background: linear-gradient(135deg, rgba(43,184,196,0.15), rgba(114,228,214,0.15)); }
-    .fi-2 { background: linear-gradient(135deg, rgba(61,155,106,0.15), rgba(106,196,146,0.15)); }
-    .fi-3 { background: linear-gradient(135deg, rgba(27,106,156,0.12), rgba(43,184,196,0.12)); }
-    .feature-card h3 { font-family: 'Quicksand', sans-serif; font-size: 1.3rem; font-weight: 700; color: var(--deep); margin-bottom: 0.75rem; }
-    .feature-card p { font-size: 0.95rem; line-height: 1.75; color: var(--muted); font-weight: 400; }
+    /* ════════════ THE HOMES (unified section) ════════════ */
+    #homes { padding: var(--section-pad) var(--side-pad); background: var(--cloud); }
+    .homes-inner { max-width: 1140px; margin: 0 auto; }
+    .homes-header { text-align: center; max-width: 600px; margin: 0 auto 4rem; }
+    .homes-header .accent-line { margin: 0 auto 2rem; }
 
-    /* ════════════ GALLERY ════════════ */
-    #gallery { padding: var(--section-pad) 0; background: var(--cloud); overflow: hidden; }
-    .gallery-header { text-align: center; max-width: 600px; margin: 0 auto 3rem; padding: 0 var(--side-pad); }
-    .gallery-header .accent-line { margin: 0 auto 2rem; }
-    .gallery-scroll {
-      display: flex; gap: 1.25rem; padding: 0 var(--side-pad) 2rem;
+    /* Feature rows — alternating image/text */
+    .home-row {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+      background: var(--white); border-radius: 24px; overflow: hidden;
+      box-shadow: 0 8px 40px rgba(15,43,60,0.06); margin-bottom: 2rem;
+      transition: transform 0.4s cubic-bezier(0.22,1,0.36,1), box-shadow 0.4s;
+    }
+    .home-row:hover { transform: translateY(-4px); box-shadow: 0 16px 60px rgba(15,43,60,0.1); }
+    .home-row:last-of-type { margin-bottom: 0; }
+    .home-row.flipped .home-row-img { order: 2; }
+    .home-row.flipped .home-row-text { order: 1; }
+    .home-row-img { position: relative; overflow: hidden; min-height: 320px; }
+    .home-row-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.22,1,0.36,1); }
+    .home-row:hover .home-row-img img { transform: scale(1.04); }
+    .home-row-text {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: clamp(2rem, 4vw, 3.5rem); gap: 1rem;
+    }
+    .home-row-icon {
+      width: 52px; height: 52px; border-radius: 14px; display: flex;
+      align-items: center; justify-content: center;
+      background: linear-gradient(135deg, rgba(43,184,196,0.12), rgba(114,228,214,0.12));
+    }
+    .home-row-text h3 {
+      font-family: 'Quicksand', sans-serif; font-size: clamp(1.3rem, 2.2vw, 1.6rem);
+      font-weight: 700; color: var(--deep); line-height: 1.25;
+    }
+    .home-row-text p {
+      font-size: 0.95rem; line-height: 1.8; color: var(--muted); font-weight: 400; max-width: 420px;
+    }
+
+    /* Gallery strip below features */
+    .homes-gallery { margin-top: 3rem; }
+    .homes-gallery-scroll {
+      display: flex; gap: 1rem; padding: 0 0 1.5rem;
       overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
       -ms-overflow-style: none; cursor: grab;
     }
-    .gallery-scroll::-webkit-scrollbar { display: none; }
-    .gallery-scroll:active { cursor: grabbing; }
-    .gallery-item {
-      flex: 0 0 clamp(280px,30vw,380px); scroll-snap-align: start; border-radius: 16px;
-      overflow: hidden; position: relative; transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
+    .homes-gallery-scroll::-webkit-scrollbar { display: none; }
+    .homes-gallery-scroll:active { cursor: grabbing; }
+    .homes-gallery-item {
+      flex: 0 0 clamp(240px,26vw,320px); scroll-snap-align: start; border-radius: 16px;
+      overflow: hidden; transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
     }
-    .gallery-item:hover { transform: scale(1.02); }
-    .gallery-item img { width: 100%; height: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: 16px; }
+    .homes-gallery-item:hover { transform: scale(1.03); }
+    .homes-gallery-item img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
     .gal-placeholder {
-      width: 100%; aspect-ratio: 3/4; display: flex; flex-direction: column;
+      width: 100%; aspect-ratio: 4/3; display: flex; flex-direction: column;
       align-items: center; justify-content: center; gap: 0.5rem;
       font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em;
       text-transform: uppercase; color: rgba(255,255,255,0.35);
       background: linear-gradient(170deg, #1b6a9c 0%, #2bb8c4 100%);
     }
     .gallery-disclaimer {
-      text-align: center; max-width: 640px; margin: 2rem auto 0; padding: 0 var(--side-pad);
+      text-align: center; max-width: 640px; margin: 1.5rem auto 0;
       font-size: 0.72rem; color: var(--faint); font-weight: 400; line-height: 1.7; font-style: italic;
     }
     .gallery-hint {
-      text-align: center; margin-top: 1rem; font-size: 0.8rem; color: var(--faint);
+      text-align: center; margin-top: 0.75rem; font-size: 0.75rem; color: var(--faint);
       font-weight: 500; letter-spacing: 0.05em;
     }
     .gallery-hint svg { display: inline-block; vertical-align: middle; margin-right: 0.3rem; }
@@ -424,7 +435,10 @@
       .nav-links { display: none; }
       .nav-toggle { display: flex; }
       .intro-grid, .dev-grid, .condo-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .features-grid { grid-template-columns: 1fr; max-width: 480px; }
+      .home-row { grid-template-columns: 1fr; }
+      .home-row.flipped .home-row-img { order: 0; }
+      .home-row.flipped .home-row-text { order: 0; }
+      .home-row-img { min-height: 240px; }
       .proximity-grid { grid-template-columns: 1fr 1fr; }
       .condo-benefits { grid-template-columns: 1fr; }
       .intro-float-card { right: 1rem; bottom: -1.5rem; }
@@ -450,7 +464,7 @@
     </a>
     <ul class="nav-links">
       <li><a href="#intro">The Vision</a></li>
-      <li><a href="#features">The Homes</a></li>
+      <li><a href="#homes">The Homes</a></li>
       <li><a href="#sitemap">Site Plan</a></li>
       <li><a href="#condo">Ownership</a></li>
       <li><a href="#location">Location</a></li>
@@ -522,52 +536,74 @@
     </div>
   </section>
 
-  <!-- THE HOMES — Features + Gallery combined -->
-  <section id="features">
-    <div class="features-header reveal">
-      <p class="eyebrow">The Homes</p>
-      <div class="accent-line"></div>
-      <h2 class="section-title">Built differently, from the ground up</h2>
-    </div>
-    <div class="features-grid">
-      <div class="feature-card reveal reveal-delay-1">
-        <div class="feature-icon fi-1">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        </div>
-        <h3>Thoughtful Design</h3>
-        <p>Open-concept layouts that maximize natural light and flow, with finishing details that make every room feel intentional.</p>
+  <!-- THE HOMES — unified section -->
+  <section id="homes">
+    <div class="homes-inner">
+      <div class="homes-header reveal">
+        <p class="eyebrow">The Homes</p>
+        <div class="accent-line"></div>
+        <h2 class="section-title">Built differently, from the ground up</h2>
       </div>
-      <div class="feature-card reveal reveal-delay-2">
-        <div class="feature-icon fi-2">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        </div>
-        <h3>Quality That Lasts</h3>
-        <p>We work with trusted trades and premium materials to build homes that hold up — structurally, aesthetically, and in value.</p>
-      </div>
-      <div class="feature-card reveal reveal-delay-3">
-        <div class="feature-icon fi-3">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--ocean)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
-        </div>
-        <h3>Coastal Living</h3>
-        <p>Steps from the shore with designs that bring the outside in — wide windows, outdoor spaces, and finishes inspired by the coast.</p>
-      </div>
-    </div>
-  </section>
 
-  <section id="gallery" style="padding-top: 0; margin-top: -2rem;">
-    <div class="gallery-scroll" id="galleryScroll">
-      <div class="gallery-item"><img src="CBW/Summer.png" alt="Coastal Breeze Way — Summer View" /></div>
-      <div class="gallery-item"><img src="CBW/Winter.png" alt="Coastal Breeze Way — Winter View" /></div>
-      <div class="gallery-item"><img src="CBW/Kitchen1.png" alt="Kitchen Concept — Style 1" /></div>
-      <div class="gallery-item"><img src="CBW/Kitchen3.png" alt="Kitchen Concept — Style 2" /></div>
-      <div class="gallery-item"><img src="CBW/Kitchen2.png" alt="Kitchen Concept — Overhead" /></div>
-      <div class="gallery-item"><div class="gal-placeholder">More photos coming soon</div></div>
+      <!-- Row 1: Thoughtful Design — Kitchen photo left, text right -->
+      <div class="home-row reveal">
+        <div class="home-row-img">
+          <img src="CBW/Kitchen1.png" alt="Kitchen Concept — Open layout with island" />
+        </div>
+        <div class="home-row-text">
+          <div class="home-row-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <h3>Thoughtful Design</h3>
+          <p>Open-concept layouts that maximize natural light and flow, with finishing details that make every room feel intentional. From the kitchen island to the last light fixture — nothing is an afterthought.</p>
+        </div>
+      </div>
+
+      <!-- Row 2: Quality That Lasts — text left, Winter photo right (flipped) -->
+      <div class="home-row flipped reveal">
+        <div class="home-row-img">
+          <img src="CBW/Winter.png" alt="Coastal Breeze Way — Winter exterior" />
+        </div>
+        <div class="home-row-text">
+          <div class="home-row-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <h3>Quality That Lasts</h3>
+          <p>We work with trusted trades and premium materials to build homes that hold up — structurally, aesthetically, and in value. Built for Nova Scotia winters and designed to age gracefully.</p>
+        </div>
+      </div>
+
+      <!-- Row 3: Coastal Living — Summer photo left, text right -->
+      <div class="home-row reveal">
+        <div class="home-row-img">
+          <img src="CBW/Summer.png" alt="Coastal Breeze Way — Summer exterior" />
+        </div>
+        <div class="home-row-text">
+          <div class="home-row-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--ocean)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+          </div>
+          <h3>Coastal Living</h3>
+          <p>Steps from the shore with designs that bring the outside in — wide windows, outdoor spaces, and finishes inspired by the coast. Your front door is one minute from the beach.</p>
+        </div>
+      </div>
+
+      <!-- Gallery strip -->
+      <div class="homes-gallery">
+        <div class="homes-gallery-scroll" id="galleryScroll">
+          <div class="homes-gallery-item"><img src="CBW/Summer.png" alt="Summer View" /></div>
+          <div class="homes-gallery-item"><img src="CBW/Winter.png" alt="Winter View" /></div>
+          <div class="homes-gallery-item"><img src="CBW/Kitchen1.png" alt="Kitchen — Style 1" /></div>
+          <div class="homes-gallery-item"><img src="CBW/Kitchen3.png" alt="Kitchen — Style 2" /></div>
+          <div class="homes-gallery-item"><img src="CBW/Kitchen2.png" alt="Kitchen — Overhead" /></div>
+          <div class="homes-gallery-item"><div class="gal-placeholder">More photos coming soon</div></div>
+        </div>
+        <p class="gallery-disclaimer">* Images are conceptual renderings and are subject to change. Final homes may differ in colour, materials, landscaping, and layout.</p>
+        <p class="gallery-hint">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          Drag to explore
+        </p>
+      </div>
     </div>
-    <p class="gallery-disclaimer">* Images are conceptual renderings and are subject to change. Final homes may differ in colour, materials, landscaping, and layout. Renderings do not constitute a promise or guarantee of the final product.</p>
-    <p class="gallery-hint">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      Drag to explore
-    </p>
   </section>
 
   <!-- SITE MAP -->
@@ -732,7 +768,7 @@
     <span class="footer-copy">&copy; 2026 Claus Concepts. All rights reserved.</span>
     <div class="footer-links">
       <a href="#intro">The Vision</a>
-      <a href="#features">The Homes</a>
+      <a href="#homes">The Homes</a>
       <a href="#contact">Contact</a>
     </div>
   </footer>
