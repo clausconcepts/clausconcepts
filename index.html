@@ -136,8 +136,16 @@
     .hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--aqua); animation: pulse 2s ease-in-out infinite; }
     @keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.4); } }
     .hero-logo {
-      max-width: clamp(280px, 40vw, 480px); height: auto; margin-bottom: 1.5rem;
+      max-width: clamp(180px, 28vw, 300px); height: auto; margin-bottom: 1.5rem;
       filter: drop-shadow(0 8px 32px rgba(0,0,0,0.3));
+    }
+    .hero-title {
+      font-family: 'Quicksand', sans-serif; font-size: clamp(3rem,7.5vw,6rem);
+      font-weight: 700; line-height: 1.05; color: var(--white); margin-bottom: 0.3em;
+    }
+    .hero-title-accent {
+      background: linear-gradient(135deg, var(--aqua) 0%, var(--teal) 50%, var(--green-lt) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
     }
     .hero-sub {
       font-size: clamp(1rem,1.8vw,1.2rem); font-weight: 400; line-height: 1.7;
@@ -187,9 +195,9 @@
     .intro-visual { position: relative; }
     .intro-img-frame {
       border-radius: 20px; overflow: hidden; box-shadow: 0 20px 60px rgba(15,43,60,0.12);
-      background: white; display: flex; align-items: center; justify-content: center; padding: 2rem;
+      background: var(--cloud);
     }
-    .intro-img-frame img { width: 100%; height: auto; border-radius: 12px; }
+    .intro-img-frame img { width: 100%; height: auto; display: block; }
     .intro-float-card {
       position: absolute; bottom: -2rem; right: -2rem; background: white; border-radius: 16px;
       padding: 1.5rem 2rem; box-shadow: 0 12px 40px rgba(15,43,60,0.1);
@@ -513,6 +521,7 @@
     <div class="hero-content">
       <div class="hero-badge"><span class="hero-badge-dot"></span> Now Selling</div>
       <img src="CBW/sign.png" alt="Coastal Breeze Way — East River, Nova Scotia" class="hero-logo" />
+      <h1 class="hero-title">Coastal<br /><span class="hero-title-accent">Breeze Way</span></h1>
       <p class="hero-sub">
         A boutique community of 16 thoughtfully designed homes in East River, Nova Scotia —
         where coastal living meets modern craftsmanship.
@@ -535,7 +544,7 @@
     <div class="intro-grid">
       <div class="intro-visual reveal">
         <div class="intro-img-frame">
-          <img src="CBW/sign.png" alt="Coastal Breeze Way — East River, Nova Scotia" />
+          <img src="CBW/Summer.png" alt="Coastal Breeze Way — Home Exterior" />
         </div>
         <div class="intro-float-card">
           <div class="float-card-icon">
