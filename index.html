@@ -265,20 +265,31 @@
     }
 
     /* Gallery strip below features */
-    .homes-gallery { margin-top: 3rem; }
+    .homes-gallery { margin-top: 3rem; position: relative; }
     .homes-gallery-scroll {
       display: flex; gap: 1rem; padding: 0 0 1.5rem;
       overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
       -ms-overflow-style: none; cursor: grab;
+      -webkit-overflow-scrolling: touch;
     }
     .homes-gallery-scroll::-webkit-scrollbar { display: none; }
     .homes-gallery-scroll:active { cursor: grabbing; }
     .homes-gallery-item {
-      flex: 0 0 clamp(240px,26vw,320px); scroll-snap-align: start; border-radius: 16px;
+      flex: 0 0 300px; min-width: 300px; scroll-snap-align: start; border-radius: 16px;
       overflow: hidden; transition: transform 0.4s cubic-bezier(0.22,1,0.36,1);
     }
     .homes-gallery-item:hover { transform: scale(1.03); }
     .homes-gallery-item img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; }
+    .gallery-nav {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 44px; height: 44px; border-radius: 50%; border: none; cursor: pointer;
+      background: rgba(255,255,255,0.9); box-shadow: 0 4px 16px rgba(15,43,60,0.15);
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.3s; z-index: 2;
+    }
+    .gallery-nav:hover { background: white; box-shadow: 0 6px 24px rgba(15,43,60,0.2); transform: translateY(-50%) scale(1.1); }
+    .gallery-nav-left { left: 0.5rem; }
+    .gallery-nav-right { right: 0.5rem; }
     .gal-placeholder {
       width: 100%; aspect-ratio: 4/3; display: flex; flex-direction: column;
       align-items: center; justify-content: center; gap: 0.5rem;
@@ -303,6 +314,56 @@
     .sitemap-header .accent-line { margin: 0 auto 2rem; }
     .sitemap-img { width: 100%; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 60px rgba(15,43,60,0.1); }
     .sitemap-img img { width: 100%; height: auto; display: block; }
+
+    /* ════════════ LOT STATUS TRACKER ════════════ */
+    .lot-tracker { margin-top: 3rem; }
+    .lot-tracker-title {
+      text-align: center; font-family: 'Quicksand', sans-serif; font-weight: 600;
+      font-size: 1rem; color: var(--navy); margin-bottom: 1.5rem; letter-spacing: 0.02em;
+    }
+    .lot-grid {
+      display: grid; grid-template-columns: repeat(8, 1fr); gap: 0.75rem;
+      max-width: 720px; margin: 0 auto;
+    }
+    .lot-cell {
+      aspect-ratio: 1; border-radius: 12px; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 0.2rem;
+      font-family: 'Quicksand', sans-serif; font-weight: 700; font-size: 0.82rem;
+      transition: transform 0.3s, box-shadow 0.3s; position: relative;
+    }
+    .lot-cell .lot-num { font-size: 1rem; font-weight: 700; }
+    .lot-cell .lot-label { font-size: 0.55rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; opacity: 0.85; }
+    .lot-cell--green {
+      background: linear-gradient(135deg, #3d9b6a, #6ac492); color: white;
+      box-shadow: 0 4px 16px rgba(61,155,106,0.25); cursor: pointer;
+      text-decoration: none;
+    }
+    .lot-cell--green:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 8px 24px rgba(61,155,106,0.35); }
+    .lot-cell--orange {
+      background: linear-gradient(135deg, #d4872e, #e8a94e); color: white;
+      box-shadow: 0 4px 16px rgba(212,135,46,0.2);
+    }
+    .lot-cell--grey {
+      background: linear-gradient(135deg, #c5cdd4, #dce2e7); color: #6b7a85;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .lot-legend {
+      display: flex; justify-content: center; gap: 1.5rem; margin-top: 1.25rem;
+      flex-wrap: wrap;
+    }
+    .lot-legend-item {
+      display: flex; align-items: center; gap: 0.45rem;
+      font-size: 0.75rem; font-weight: 500; color: var(--muted);
+    }
+    .lot-legend-dot {
+      width: 12px; height: 12px; border-radius: 4px;
+    }
+    .lot-legend-dot--green { background: linear-gradient(135deg, #3d9b6a, #6ac492); }
+    .lot-legend-dot--orange { background: linear-gradient(135deg, #d4872e, #e8a94e); }
+    .lot-legend-dot--grey { background: linear-gradient(135deg, #c5cdd4, #dce2e7); }
+    @media (max-width: 600px) {
+      .lot-grid { grid-template-columns: repeat(4, 1fr); max-width: 360px; }
+    }
 
     /* ════════════ LOCATION / PROXIMITY ════════════ */
     #location {
@@ -570,7 +631,7 @@
         where coastal living meets modern craftsmanship.
       </p>
       <div class="hero-actions">
-        <a href="#contact" class="btn btn-primary">Register Your Interest</a>
+        <a href="#listings" class="btn btn-primary">See Active Listings</a>
         <a href="#intro" class="btn btn-ghost">Explore the Vision</a>
       </div>
     </div>
@@ -623,6 +684,42 @@
       </div>
       <div class="sitemap-img reveal reveal-delay-1">
         <img src="CBW/Site_Map.png" alt="Coastal Breeze Way — Site Plan" />
+      </div>
+
+      <!-- Lot Status Tracker -->
+      <div class="lot-tracker reveal reveal-delay-2">
+        <p class="lot-tracker-title">Development Status</p>
+        <div class="lot-grid">
+          <a href="https://www.viewpoint.ca/cutsheet/202619951/1/Unit-4-7232-329-Highway-East-River-Point?map=1&summary=properties" target="_blank" rel="noopener" class="lot-cell lot-cell--green" title="Lot 1 — View Listing">
+            <span class="lot-num">1</span><span class="lot-label">For Sale</span>
+          </a>
+          <a href="https://www.viewpoint.ca/cutsheet/202620299/1/Unit-4-7232-329-Highway-East-River-Point?map=1&summary=properties" target="_blank" rel="noopener" class="lot-cell lot-cell--green" title="Lot 2 — View Listing">
+            <span class="lot-num">2</span><span class="lot-label">For Sale</span>
+          </a>
+          <div class="lot-cell lot-cell--orange" title="Lot 3 — Under Construction">
+            <span class="lot-num">3</span><span class="lot-label">Building</span>
+          </div>
+          <div class="lot-cell lot-cell--orange" title="Lot 4 — Under Construction">
+            <span class="lot-num">4</span><span class="lot-label">Building</span>
+          </div>
+          <div class="lot-cell lot-cell--grey" title="Lot 5 — Preliminary"><span class="lot-num">5</span></div>
+          <div class="lot-cell lot-cell--grey" title="Lot 6 — Preliminary"><span class="lot-num">6</span></div>
+          <div class="lot-cell lot-cell--grey" title="Lot 7 — Preliminary"><span class="lot-num">7</span></div>
+          <div class="lot-cell lot-cell--grey" title="Lot 8 — Preliminary"><span class="lot-num">8</span></div>
+          <div class="lot-cell lot-cell--grey" title="Lot 9 — Preliminary"><span class="lot-num">9</span></div>
+          <div class="lot-cell lot-cell--grey" title="Lot 10 — Preliminary"><span class="lot-num">10</span></div>
+          <div class="lot-cell lot-cell--grey" title="Lot 11 — Preliminary"><span class="lot-num">11</span></div>
+          <div class="lot-cell lot-cell--grey" title="Lot 12 — Preliminary"><span class="lot-num">12</span></div>
+          <div class="lot-cell lot-cell--grey" title="Lot 13 — Preliminary"><span class="lot-num">13</span></div>
+          <div class="lot-cell lot-cell--grey" title="Lot 14 — Preliminary"><span class="lot-num">14</span></div>
+          <div class="lot-cell lot-cell--grey" title="Lot 15 — Preliminary"><span class="lot-num">15</span></div>
+          <div class="lot-cell lot-cell--grey" title="Lot 16 — Preliminary"><span class="lot-num">16</span></div>
+        </div>
+        <div class="lot-legend">
+          <div class="lot-legend-item"><div class="lot-legend-dot lot-legend-dot--green"></div>Turnkey — For Sale</div>
+          <div class="lot-legend-item"><div class="lot-legend-dot lot-legend-dot--orange"></div>Under Construction</div>
+          <div class="lot-legend-item"><div class="lot-legend-dot lot-legend-dot--grey"></div>Preliminary Stage</div>
+        </div>
       </div>
     </div>
   </section>
@@ -680,17 +777,23 @@
 
       <!-- Gallery strip -->
       <div class="homes-gallery">
+        <button class="gallery-nav gallery-nav-left" aria-label="Scroll left" onclick="document.getElementById('galleryScroll').scrollBy({left:-320,behavior:'smooth'})">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--deep)" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
         <div class="homes-gallery-scroll" id="galleryScroll">
-          <div class="homes-gallery-item"><img src="interiors/int01.jpg" alt="Interior 1" /></div>
-          <div class="homes-gallery-item"><img src="interiors/int02.jpg" alt="Interior 2" /></div>
-          <div class="homes-gallery-item"><img src="interiors/int03.jpg" alt="Interior 3" /></div>
-          <div class="homes-gallery-item"><img src="interiors/int04.jpg" alt="Interior 4" /></div>
-          <div class="homes-gallery-item"><img src="interiors/int05.jpg" alt="Interior 5" /></div>
-          <div class="homes-gallery-item"><img src="interiors/int07.jpg" alt="Interior 7" /></div>
-          <div class="homes-gallery-item"><img src="interiors/int08.jpg" alt="Interior 8" /></div>
-          <div class="homes-gallery-item"><img src="interiors/int09.jpg" alt="Interior 9" /></div>
-          <div class="homes-gallery-item"><img src="interiors/int10.jpg" alt="Interior 10" /></div>
+          <div class="homes-gallery-item"><img src="interiors/int01.jpg" alt="Interior 1" loading="lazy" /></div>
+          <div class="homes-gallery-item"><img src="interiors/int02.jpg" alt="Interior 2" loading="lazy" /></div>
+          <div class="homes-gallery-item"><img src="interiors/int03.jpg" alt="Interior 3" loading="lazy" /></div>
+          <div class="homes-gallery-item"><img src="interiors/int04.jpg" alt="Interior 4" loading="lazy" /></div>
+          <div class="homes-gallery-item"><img src="interiors/int05.jpg" alt="Interior 5" loading="lazy" /></div>
+          <div class="homes-gallery-item"><img src="interiors/int07.jpg" alt="Interior 7" loading="lazy" /></div>
+          <div class="homes-gallery-item"><img src="interiors/int08.jpg" alt="Interior 8" loading="lazy" /></div>
+          <div class="homes-gallery-item"><img src="interiors/int09.jpg" alt="Interior 9" loading="lazy" /></div>
+          <div class="homes-gallery-item"><img src="interiors/int10.jpg" alt="Interior 10" loading="lazy" /></div>
         </div>
+        <button class="gallery-nav gallery-nav-right" aria-label="Scroll right" onclick="document.getElementById('galleryScroll').scrollBy({left:320,behavior:'smooth'})">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--deep)" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
       </div>
     </div>
   </section>
@@ -807,7 +910,7 @@
         <h2 class="section-title">Now available</h2>
       </div>
       <div class="listings-grid">
-        <a href="https://www.viewpoint.ca/rgRhY" target="_blank" rel="noopener" class="listing-card reveal">
+        <a href="https://www.viewpoint.ca/cutsheet/202619951/1/Unit-4-7232-329-Highway-East-River-Point?map=1&summary=properties" target="_blank" rel="noopener" class="listing-card reveal">
           <div class="listing-card-img">
             <img src="Lot 01/01.jpg" alt="Coastal Breeze Way — Lot 1" />
             <div class="listing-badge">Active</div>
@@ -834,7 +937,7 @@
             </div>
           </div>
         </a>
-        <a href="https://www.viewpoint.ca/zFjFC" target="_blank" rel="noopener" class="listing-card reveal reveal-delay-1">
+        <a href="https://www.viewpoint.ca/cutsheet/202620299/1/Unit-4-7232-329-Highway-East-River-Point?map=1&summary=properties" target="_blank" rel="noopener" class="listing-card reveal reveal-delay-1">
           <div class="listing-card-img">
             <img src="Lot 02/01.jpg" alt="Coastal Breeze Way — Lot 2" />
             <div class="listing-badge">Active</div>
@@ -955,13 +1058,16 @@
     }, { threshold: 0.5 });
     counters.forEach(el => counterObs.observe(el));
 
-    // Gallery drag scroll
+    // Gallery drag scroll (mouse + touch)
     const gallery = document.getElementById('galleryScroll');
-    let isDown = false, startX, scrollLeft;
-    gallery.addEventListener('mousedown', (e) => { isDown = true; gallery.style.cursor = 'grabbing'; startX = e.pageX - gallery.offsetLeft; scrollLeft = gallery.scrollLeft; });
+    let isDown = false, startX, scrollL;
+    gallery.addEventListener('mousedown', (e) => { isDown = true; gallery.style.cursor = 'grabbing'; startX = e.pageX; scrollL = gallery.scrollLeft; });
     gallery.addEventListener('mouseleave', () => { isDown = false; gallery.style.cursor = 'grab'; });
     gallery.addEventListener('mouseup', () => { isDown = false; gallery.style.cursor = 'grab'; });
-    gallery.addEventListener('mousemove', (e) => { if (!isDown) return; e.preventDefault(); gallery.scrollLeft = scrollLeft - ((e.pageX - gallery.offsetLeft) - startX) * 1.5; });
+    gallery.addEventListener('mousemove', (e) => { if (!isDown) return; e.preventDefault(); gallery.scrollLeft = scrollL - (e.pageX - startX) * 1.5; });
+    // Touch
+    gallery.addEventListener('touchstart', (e) => { startX = e.touches[0].pageX; scrollL = gallery.scrollLeft; }, { passive: true });
+    gallery.addEventListener('touchmove', (e) => { gallery.scrollLeft = scrollL - (e.touches[0].pageX - startX); }, { passive: true });
 
     // Mobile nav
     const toggle = document.querySelector('.nav-toggle');
